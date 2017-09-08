@@ -55,5 +55,4 @@ public enum Card  {
     public String toString() {
         return name;
     }
-   
 }
