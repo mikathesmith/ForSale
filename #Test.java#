@@ -15,7 +15,7 @@ import java.lang.*;
  */
 public class Test {
     private static double averageRemaining;
-    private static ArrayList<Integer> cards = new ArrayList<Integer>();
+    private static ArrayList<Integer> cards;
     private static double averageCard;
     private static ArrayList<Card> cardvalue;
     private static int roundsleft = 5;
