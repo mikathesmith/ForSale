@@ -3,26 +3,31 @@ import java.util.*;
 
 
 
-public class GamePlay implements Strategy{
+
+public abstract class GamePlay implements Strategy{
 	
 	public static void main(String[]args){
-		
+		 
 		//bid - Phase 1
 		
 		//chooseCard - Phase 2
 	}
 	
 	public Card chooseCard(PlayerRecord p, SaleState s){
-		ArrayList<Card> myCurrentHand = p.getCards(); //the houses that I've bought in phase 1
+		ArrayList<Card> myCurrentHand = p.getCards(); //the houses that I've bought in phase 1 - order these? 
 		ArrayList<Integer> cheques = s.getChequesAvailable(); //6 cheques played this round, one of 
 		//which I select to sell one of my houses for 
 		
 	//	Card c = new Card(30, "Space station"); 
 		
-		//Check if we have a 30
-		if(myCurrentHand.indexOf(SPACESTATION) != -1){ //we have a 30
-			
+		for(Card c : myCurrentHand){
+			System.out.println(c.getQuality());
 		}
+		
+		//Check if we have a 30
+		//if(myCurrentHand.indexOf(new Card(30)) != -1){ //we have a 30
+			
+	//	}
 		
 		//check if we have a 29
 		
