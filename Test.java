@@ -197,6 +197,16 @@ public class Test {
             @Override
             public Card chooseCard(PlayerRecord p, SaleState s) {
         			ArrayList<Card> myCurrentHand = p.getCards(); //the houses that I've bought in phase 1
+        			ArrayList<Integer> cards= new ArrayList<Integer>();  
+        			Random r = new Random(1,3); 
+        	
+        			
+        			for(Card c : myCurrentHand){ //fill hand with card integer values 
+        				cards.add(c.getQuality());
+        			}
+        			Collections.sort(cards);
+                    //Collections.reverse(cards); 
+        			
         			ArrayList<Integer> cheques = s.getChequesAvailable(); //6 cheques played this round, one of 
         			//which I select to sell one of my houses for 
                     ArrayList<Integer> chequesPlayed;
@@ -245,11 +255,14 @@ public class Test {
                         }
                     }
 
+        			
+        			ArrayList<Integer> chequesLeft= s.getChequesRemaining();  //the cheques that are still left in the deck
+        		
         			//	Card c = new Card(30, "Space station"); 
         		
         			//Check if we have a 30
-        			if(myCurrentHand.indexOf(SPACESTATION) != -1){ //we have a 30
-        			
+        			if(cards.indexOf(30) != -1){ //we have a 30
+
         			}
         			
         			//if getChequesAvailable from salestate includes a 30, then... 
@@ -262,14 +275,12 @@ public class Test {
         			//getPlayersInAuction if this is 1 and no one has played a higher card then your highest
         			//then play highest card 
         		
-        			return myCurrentHand.get(0); //return a Card to play
+        			//return myCurrentHand.get(0); //return a Card to play
         		
                 System.out.println(p.getCards());
                 return p.getCards().get((int) (Math.random()*p.getCards().size()));
             }
         };
-        
-        
         
         
         // A null strategy - never bid, always play your top card.
