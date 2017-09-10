@@ -247,15 +247,20 @@ public class Test {
                     	if (cards.indexOf(29) != -1) { //also have a 29
                     		 if(chequesLeft.contains(15)) { // this is the first 15
                                  return 29; //play 29 on first 15 cheque - cards.get(29);
-                             } else if{
+                                 //return myCurrentHand.get(Card.getQuality(29);
+                             } else{
                                  return 30; //play 30 on second 15 cheque 
                              }
                     	}else{ //dont have a 29
                     		 if (r == 1) {
-                                 if (chequesPlayed.contains(15)) { // play 30 on second 15
+                                 if (chequesLeft.contains(15)) { // play 30 on second 15
                                  	return 30;
-                             } else{
-                            	 return 30;
+                                 }
+                             } else{ // r ==2 
+                            	 if (!chequesLeft.contains(15)) { // play 30 on second 15
+                                  	return 30;
+                                  }
+                            	 
                              }
                     	}
                     }
