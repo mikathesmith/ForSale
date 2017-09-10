@@ -7,7 +7,6 @@ package forsale;
 
 import java.util.ArrayList;
 
-import javax.smartcardio.Card;
 
 import java.util.*;
 import java.lang.*;
@@ -33,7 +32,7 @@ public class Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int r = random.nextInt(2);
+        int ran = random.nextInt(2);
         Strategy s = new Strategy(){
             
             @Override
@@ -226,7 +225,7 @@ public class Test {
                                  return 30; //play 30 on second 15 cheque 
                              }
                     	}else{ //dont have a 29
-                    		 if (r == 0) {
+                    		 if (ran == 0) {
                                  if (chequesLeft.contains(15)) { // play 30 on first 15
                                  	return 30;
                                  }
