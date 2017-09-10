@@ -7,8 +7,6 @@ package forsale;
 
 import java.util.ArrayList;
 
-import javax.smartcardio.Card;
-
 import java.util.*;
 import java.lang.*;
 
@@ -27,13 +25,14 @@ public class Test {
     private static final int HIGH_RANGE = 23;
     private static final int LOW_RANGE =16;
     private static final Random random = new Random();
+    private static final int CHEQUE_RANGE = 6; 
     
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        int r = random.nextInt(2);
+        int ran = random.nextInt(2);
         Strategy s = new Strategy(){
             
             @Override
@@ -207,14 +206,13 @@ public class Test {
         			for(Card c : myCurrentHand){ //fill hand with card integer values 
         				cards.add(c.getQuality());
         			}
-        			Collections.sort(cards);
+                    Collections.sort(cards);
+                    
+                    
                     //Collections.reverse(cards); 
         			
-        			ArrayList<Integer> cheques = s.getChequesAvailable(); //6 cheques played this round, one of 
-        			//which I select to sell one of my houses for 
-                    ArrayList<Integer> chequesPlayed;
-                    
-                //	Card c = new Card(30, "Space station"); 
+                    ArrayList<Integer> cheques = s.getChequesAvailable(); //6 cheques played this round
+                    Collections.sort(cheques); //sorted in ascending order of value
                     
                     
                     if(cards.indexOf(30) != -1 && cheques.contains(15)){
@@ -226,7 +224,7 @@ public class Test {
                                  return 30; //play 30 on second 15 cheque 
                              }
                     	}else{ //dont have a 29
-                    		 if (r == 0) {
+                    		 if (ran == 0) {
                                  if (chequesLeft.contains(15)) { // play 30 on first 15
                                  	return 30;
                                  }
@@ -248,24 +246,38 @@ public class Test {
 
                     //check if we have a 28
                     if (cards.indexOf(28) != -1) {
-                        if (cheques.contains(14)) {
-                            return 28;
+                        if (cheques.contains(14)) { // first 14
+                            return 28; // play 28 on first 14
                         }
                     }
 
+                    if (cards.indexOf(2) != -1 && cards.indexOf(1) == -1) {
+                        
+                        if (cheques.get(0) >= 6) {
+                            return 2;
+                        }
+                    }
+
+                    if (cards.indexOf(1) != -1 && cards.indexOf(2) == -1) {
+                        if (cheques.get(0) >= 6) {
+                            return 1;
+                        }
+                    }
+
+                    if(cheques.contains(0)){
+                        return cards.get(cards.size()/2); //return middle card
+                    }
+
+
+                    //Generic method 
+                    int chequeRange = cheques.get(cheques.size()-1) - cheques.get(0); //range between highest and lowest cheque
+                    if(chequeRange < CHEQUE_RANGE){ //low range
+
+                    }else{ //high range
+
+                    }
+
  
-        			//	Card c = new Card(30, "Space station"); 
-        		
-        		
-        			//if getChequesAvailable from salestate includes a 30, then... 
-        			//look at hand - getCardsInHand and see if we have a getQuality()==30 
- 
-        			//getCurrentBid
-        		
-        			//getPlayersInAuction if this is 1 and no one has played a higher card then your highest
-        			//then play highest card 
-        		
-        			//return myCurrentHand.get(0); //return a Card to play
         		
                // System.out.println(p.getCards());
                 return p.getCards().get((int) (Math.random()*p.getCards().size()));
