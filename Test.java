@@ -7,8 +7,6 @@ package forsale;
 
 import java.util.ArrayList;
 
-import javax.smartcardio.Card;
-
 import java.util.*;
 import java.lang.*;
 
@@ -203,23 +201,23 @@ public class Test {
         			ArrayList<Integer> cards= new ArrayList<Integer>();  
         			ArrayList<Integer> chequesLeft= s.getChequesRemaining();  //the cheques that are still left in the deck
 
-                    for (int i = 0 ; i < myCurrentHands().size()-1 ; i++){
-                        if(myCurrentHand(i).getQuality().indexOf(30) != -1){
+                    for (int i = 0 ; i < myCurrentHand.size()-1 ; i++){
+                        if(myCurrentHand.get(i).getQuality() == 30){
                             index30=i;
                         }
-                        if(myCurrentHand(i).getQuality().indexOf(29) != -1){
+                        if(myCurrentHand.get(i).getQuality() == 29){
                             index29=i;
                         }
-                        if(myCurrentHand(i).getQuality().indexOf(28) != -1){
+                        if(myCurrentHand.get(i).getQuality() == 28){
                             index28=i;
                         }
-                        if(myCurrentHand(i).getQuality().indexOf(27) != -1){
+                        if(myCurrentHand.get(i).getQuality() == 27){
                             index27=i;
                         }
-                        if(myCurrentHand(i).getQuality().indexOf(2) != -1){
+                        if(myCurrentHand.get(i).getQuality() == 2){
                             index2=i;
                         }
-                        if(myCurrentHand(i).getQuality().indexOf(1) != -1){
+                        if(myCurrentHand.get(i).getQuality() == 1){
                             index1=i;
                         }
                     }
@@ -294,7 +292,7 @@ public class Test {
                     }
 
                     if(cheques.contains(0)){
-                        return myCurrentHand.get((myCurrentHand.size()/2)+1); //return middle card
+                        return myCurrentHand.get((myCurrentHand.size()/2)); //return middle card
                     }
 
 
@@ -306,13 +304,13 @@ public class Test {
                         if (cheques.get(5)  == 13) { // check if highest cheque is a 13
                             return myCurrentHand.get(myCurrentHand.size()-1); // play highest card
                         } else {
-                            return myCurrentHand.get((myCurrentHand.size()/2)+1); //return middle card
+                            return myCurrentHand.get((myCurrentHand.size()/2)); //return middle card
                         }
                     }
 
-               // System.out.println(p.getCards());
-                return p.getCards().get((int) (Math.random()*p.getCards().size()));
             }
+            // System.out.println(p.getCards());
+            //return p.getCards().get((int) (Math.random()*p.getCards().size()));
         };
         
         
