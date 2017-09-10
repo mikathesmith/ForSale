@@ -6,6 +6,9 @@
 package forsale;
 
 import java.util.ArrayList;
+
+import javax.smartcardio.Card;
+
 import java.util.*;
 import java.lang.*;
 
@@ -196,7 +199,52 @@ public class Test {
         			ArrayList<Card> myCurrentHand = p.getCards(); //the houses that I've bought in phase 1
         			ArrayList<Integer> cheques = s.getChequesAvailable(); //6 cheques played this round, one of 
         			//which I select to sell one of my houses for 
-        		
+                    ArrayList<Integer> chequesPlayed;
+                    
+                //	Card c = new Card(30, "Space station"); 
+                    
+                    //Check if we have a 30
+                    if(myCurrentHand.indexOf(30) != -1){ //we have a 30
+                        if (myCurrentHand.indexOf(29) != -1) {
+                            if (cheques.contains(15) && chequesPlayed.contains(15)) { // play 30 on second 15
+                                return 30;
+                            } else if (cheques.contains(15)) { // play 29 on first 15
+                                return 29;
+                            }
+                        } else {
+                            // choose random number between 1 and 2
+                            Random random = new Random();
+                            // play 30 randomly on the 15 cheque
+                            if (random == 2) {
+                                if (cheques.contains(15) && chequesPlayed.contains(15)) { // play 30 on second 15
+                                return 30;
+                            } else if (random == 1) {
+                                if (cheques.contains(15)) {
+                                    return 30;
+                                }
+                            }
+                        }
+                    }
+                    
+                    //check if we have a 29
+                    if (myCurrentHand.indexOf(29) != -1) {
+                        if (myCurrentHand.indexOf(28) != -1) {
+                            if (cheques.contains(15) && chequesPlayed.contains(15)) {
+                                return 29;
+                            }
+                            if (cheques.contains(14) && chequesPlayed.contains(14)) {
+                                return 28;
+                            }
+                        }
+                    }
+
+                    //check if we have a 28
+                    if (myCurrentHand.indexOf(28) != -1) {
+                        if (cheques.contains(14)) {
+                            return 28;
+                        }
+                    }
+
         			//	Card c = new Card(30, "Space station"); 
         		
         			//Check if we have a 30
