@@ -198,6 +198,8 @@ public class Test {
             public Card chooseCard(PlayerRecord p, SaleState s) {
         			ArrayList<Card> myCurrentHand = p.getCards(); //the houses that I've bought in phase 1
         			ArrayList<Integer> cards= new ArrayList<Integer>();  
+        			ArrayList<Integer> chequesLeft= s.getChequesRemaining();  //the cheques that are still left in the deck
+        		
         			Random r = new Random(1,3); 
         	
         			
@@ -213,32 +215,54 @@ public class Test {
                     
                 //	Card c = new Card(30, "Space station"); 
                     
-                    //Check if we have a 30
-                    if(myCurrentHand.indexOf(30) != -1){ //we have a 30
-                        if (myCurrentHand.indexOf(29) != -1) {
-                            if (cheques.contains(15) && chequesPlayed.contains(15)) { // play 30 on second 15
-                                return 30;
-                            } else if (cheques.contains(15)) { // play 29 on first 15
-                                return 29;
+               /*     //Check if we have a 30
+                    if(cards.indexOf(30) != -1){ //we have a 30
+                        if (cards.indexOf(29) != -1) { //also have a 29
+                            if (cheques.contains(15) && chequesLeft.contains(15)) { // this is the first 15
+                                return 29; //play 29 on first 15 cheque - cards.get(29);
+                            } else if (cheques.contains(15)) { 
+                                return 30; //play 30 on second 15 cheque 
+                            }else{
+                            	continue; //TODO : double check this worked 
                             }
-                        } else {
+                            
+                            
+                            //if both false, then we wont play either
+                        } else { //dont have a 29
                             // choose random number between 1 and 2
-                            Random random = new Random();
+                        
                             // play 30 randomly on the 15 cheque
-                            if (random == 2) {
+                            if (r == 1) {
                                 if (cheques.contains(15) && chequesPlayed.contains(15)) { // play 30 on second 15
-                                return 30;
-                            } else if (random == 1) {
+                                	return 30;
+                            } else{ //r is 2
                                 if (cheques.contains(15)) {
                                     return 30;
                                 }
                             }
                         }
+                    }*/
+                    
+                    if(cards.indexOf(30) != -1 && cheques.contains(15){
+                    	if (cards.indexOf(29) != -1) { //also have a 29
+                    		 if(chequesLeft.contains(15)) { // this is the first 15
+                                 return 29; //play 29 on first 15 cheque - cards.get(29);
+                             } else if{
+                                 return 30; //play 30 on second 15 cheque 
+                             }
+                    	}else{ //dont have a 29
+                    		 if (r == 1) {
+                                 if (chequesPlayed.contains(15)) { // play 30 on second 15
+                                 	return 30;
+                             } else{
+                            	 return 30;
+                             }
+                    	}
                     }
                     
                     //check if we have a 29
-                    if (myCurrentHand.indexOf(29) != -1) {
-                        if (myCurrentHand.indexOf(28) != -1) {
+                    if (cards.indexOf(29) != -1) {
+                        if (cards.indexOf(28) != -1) {
                             if (cheques.contains(15) && chequesPlayed.contains(15)) {
                                 return 29;
                             }
@@ -249,27 +273,19 @@ public class Test {
                     }
 
                     //check if we have a 28
-                    if (myCurrentHand.indexOf(28) != -1) {
+                    if (cards.indexOf(28) != -1) {
                         if (cheques.contains(14)) {
                             return 28;
                         }
                     }
 
-        			
-        			ArrayList<Integer> chequesLeft= s.getChequesRemaining();  //the cheques that are still left in the deck
-        		
+ 
         			//	Card c = new Card(30, "Space station"); 
         		
-        			//Check if we have a 30
-        			if(cards.indexOf(30) != -1){ //we have a 30
-
-        			}
-        			
+        		
         			//if getChequesAvailable from salestate includes a 30, then... 
         			//look at hand - getCardsInHand and see if we have a getQuality()==30 
-        		
-        			//getChequesRemaining
-        		
+ 
         			//getCurrentBid
         		
         			//getPlayersInAuction if this is 1 and no one has played a higher card then your highest
@@ -277,7 +293,7 @@ public class Test {
         		
         			//return myCurrentHand.get(0); //return a Card to play
         		
-                System.out.println(p.getCards());
+               // System.out.println(p.getCards());
                 return p.getCards().get((int) (Math.random()*p.getCards().size()));
             }
         };
